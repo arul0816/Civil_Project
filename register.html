@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EduTrack - Register</title>
+    <style>
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Background with civil department theme */
+        .background {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0f1010 100%, #000000 100%, #000000 100%);
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        /* Background image overlay */
+        .background::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('jcb3.jpg'); /* You can replace this with your image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* Alternative: If you want to add image via img tag instead */
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        /* Container and Form Animation */
+        .container {
+            background: rgb(111, 132, 148); /* Dark background */
+            padding: 35px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            width: 360px;
+            animation: float 6s ease-in-out infinite;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Form fade in animation */
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form {
+            animation: fadeSlide 1.5s ease;
+        }
+
+        /* Form Heading */
+        .form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #eb0c0c;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Input Group */
+        .input-group {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px 10px;
+            font-size: 16px;
+            border: 1px solid #555;
+            background: rgba(147, 235, 15, 0.1);
+            color: #ffffff;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: #070809;
+            box-shadow: 0 0 8px rgba(5, 5, 5, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Placeholder text color */
+        .input-group input::placeholder,
+        .input-group select::placeholder,
+        .input-group textarea::placeholder {
+            color: #bbb;
+        }
+
+        /* Select options styling */
+        .input-group select option {
+            background: #0d0e0f;
+            color: #ffffff;
+        }
+
+        /* Floating Label */
+        .input-group label {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            color: #bbb;
+            font-size: 25px;
+            pointer-events: none;
+            transition: 0.3s;
+            background: rgba(29, 22, 1, 0.9);
+            padding: 0 4px;
+        }
+
+        /* Label Move Up */
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label,
+        .input-group select:focus + label,
+        .input-group textarea:focus + label,
+        .input-group textarea:not(:placeholder-shown) + label {
+            top: -10px;
+            font-size: 12px;
+            color: #ecf1f5;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: #0d0505;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #2980b9, #1abc9c);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Password Group */
+        .password-group {
+            position: relative;
+        }
+
+        /* Eye Icon */
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #bbb;
+        }
+
+        .toggle-password:hover {
+            color: #ffffff;
+        }
+
+        /* Terms & Conditions */
+        .input-group.terms {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: #070404;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .input-group.terms input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #3498db;
+        }
+
+        .input-group.terms label {
+            margin: 0;
+            cursor: pointer;
+            position: static;
+            background: none;
+            padding: 0;
+            top: auto;
+            left: auto;
+            color: #0b0707;
+            font-size: 0.9rem;
+        }
+
+        .input-group.terms a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .input-group.terms a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+
+        /* Login link */
+        p {
+            text-align: center;
+            color: #140b0b;
+            margin-top: 15px;
+        }
+
+        p a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+
+        /* Spinner Overlay */
+        .spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .spinner {
+            border: 6px solid #0e0909;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 400px) {
+            .container {
+                width: 90%;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background with civil department theme -->
+    <div class="background"></div>
+    
+    <!-- Alternative: Use img tag for background image -->
+    <!-- <img src="civil-crane-background.jpg" alt="Civil Department Background" class="background-image"> -->
+
+    <!-- Registration Form -->
+    <div class="container">
+        <form action="register.php" method="POST" id="registerForm" class="form">
+            <h2>Register</h2>
+
+            <!-- Full Name -->
+            <div class="input-group">
+                <input type="text" name="full_name" required />
+                <label>Full Name</label>
+            </div>
+
+            <!-- Email -->
+            <div class="input-group">
+                <input type="email" name="email" required />
+                <label>Email ID</label>
+            </div>
+
+            <!-- Phone -->
+            <div class="input-group">
+                <input
+                    type="tel"
+                    name="phone_number"
+                    id="phoneNumber"
+                    required
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                />
+                <label>Phone Number</label>
+            </div>
+
+            <!-- District -->
+            <div class="input-group">
+                <select name="district" id="district" required>
+                    <option value="">Select District</option>
+                    <option>Chennai</option>
+                    <option>Madurai</option>
+                    <option>Coimbatore</option>
+                    <option>Salem</option>
+                </select>
+            </div>
+
+            <!-- Block -->
+            <div class="input-group">
+                <select name="block" id="block" required>
+                    <option value="">Select Block</option>
+                    <!-- options will be filled in by JS -->
+                </select>
+            </div>
+
+            <!-- Password -->
+            <div class="input-group password-group">
+                <input type="password" name="password" id="password" required />
+                <label>Password</label>
+                <span class="toggle-password" toggle="#password">&#128065;</span>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="input-group password-group">
+                <input
+                    type="password"
+                    name="confirm_password"
+                    id="confirm_password"
+                    required
+                />
+                <label>Confirm Password</label>
+                <span class="toggle-password" toggle="#confirm_password">&#128065;</span>
+            </div>
+
+            <!-- Terms & Conditions checkbox -->
+            <div class="input-group terms">
+                <input type="checkbox" id="terms" name="terms" required />
+                <label for="terms">I agree to the</label>
+                <a href="terms.html" id="termsLink">Terms &amp; Conditions</a>
+            </div>
+
+            <button type="submit">Register</button>
+            <p>
+                Already Registered?
+                <a href="login.html">Login</a>
+            </p>
+        </form>
+    </div>
+
+    <script>
+        const blocksByDistrict = {
+            Chennai: ["Anna Nagar", "Adyar", "Guindy"],
+            Madurai: ["SS Colony", "KK Nagar", "Villapuram"],
+            Coimbatore: ["Thudiyalur", "Ramanathapuram", "Gandhipuram"],
+            Salem: ["Suramangalam", "Ammapet", "Kondalampatti"]
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // District and block selection functionality
+            const districtSel = document.getElementById("district");
+            const blockSel = document.getElementById("block");
+
+            districtSel.addEventListener("change", () => {
+                // Clear previous list but keep the first placeholder option
+                blockSel.length = 1;
+
+                // Get blocks for chosen district (or empty array if none)
+                const blocks = blocksByDistrict[districtSel.value] || [];
+
+                // Create an <option> for each block
+                blocks.forEach(block => {
+                    const opt = document.createElement("option");
+                    opt.value = opt.textContent = block;
+                    blockSel.appendChild(opt);
+                });
+            });
+
+            // Terms and conditions functionality
+            const hasOpenedTerms = sessionStorage.getItem("readTerms") === "yes";
+            const checkbox = document.getElementById("terms");
+            
+            if (hasOpenedTerms) checkbox.checked = true;
+
+            checkbox.addEventListener("click", function (e) {
+                if (!sessionStorage.getItem("readTerms")) {
+                    e.preventDefault();
+                    alert("Please open and read the Terms & Conditions first.");
+                }
+            });
+
+            // Password toggle functionality
+            document.querySelectorAll('.toggle-password').forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const target = document.querySelector(this.getAttribute('toggle'));
+                    if (target.getAttribute('type') === 'password') {
+                        target.setAttribute('type', 'text');
+                        this.textContent = '👁️';
+                    } else {
+                        target.setAttribute('type', 'password');
+                        this.textContent = '👁️';
+                    }
+                });
+            });
+
+            // Form submission (you can customize this)
+            document.getElementById('registerForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Add your form validation and submission logic here
+                const formData = new FormData(this);
+                console.log('Form submitted with data:', Object.fromEntries(formData));
+                
+                // Example: Show success message
+                alert('Registration form submitted successfully!');
+            });
+        });
+    </script>
+</body>
+</html>

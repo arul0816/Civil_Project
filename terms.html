@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms and Conditions - E-Cot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #007bff;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .back-btn {
+  margin-top: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #0056b3;
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Terms and Conditions</h1>
+
+  <p>Welcome to <strong>E-Cot</strong>. By creating an account and using our platform, you agree to the following terms and conditions.</p>
+
+  <h2>1. User Responsibilities</h2>
+  <ul>
+    <li>You must provide accurate personal information during registration.</li>
+    <li>Users are responsible for their own items listed or rented on E-Cot.</li>
+    <li>Items rented should be returned on time in the same condition as received.</li>
+  </ul>
+
+  <h2>2. Listing and Renting Items</h2>
+  <ul>
+    <li>Sellers can list their personal items for rent by providing correct details and images.</li>
+    <li>Renters must complete the rental process and agree to the terms set by the owner.</li>
+    <li>E-Cot may add a service charge or commission to the displayed rental price.</li>
+  </ul>
+
+  <h2>3. Payments and Fees</h2>
+  <ul>
+    <li>All payments must be completed through the provided payment methods (coming soon).</li>
+    <li>E-Cot may deduct a small fee from the rental amount as a service charge.</li>
+  </ul>
+
+  <h2>4. Privacy and Security</h2>
+  <ul>
+    <li>We value your privacy and will not share your information without consent.</li>
+    <li>Passwords are stored securely using encryption.</li>
+  </ul>
+
+  <h2>5. Prohibited Activities</h2>
+  <ul>
+    <li>No illegal, stolen, or restricted items should be listed.</li>
+    <li>Spamming, fake listings, and fraud will result in account termination.</li>
+  </ul>
+
+  <h2>6. Termination of Account</h2>
+  <ul>
+    <li>E-Cot reserves the right to suspend or delete any account for misuse or policy violations.</li>
+  </ul>
+
+  <h2>7. Changes to Terms</h2>
+  <p>We may update these terms at any time. Please check this page regularly for updates.</p>
+
+  <p>By using E-Cot, you agree to follow these terms. If you do not agree, please do not use the platform.</p>
+
+<button type="button" onclick="goBack()" class="back-btn">← Back</button>
+
+<script>
+function goBack(){
+  // mark that Terms were opened in this tab
+  sessionStorage.setItem("readTerms", "yes");
+  // return to previous page
+  window.history.back();
+}
+</script>
+
+
+
+</body>
+</html>
